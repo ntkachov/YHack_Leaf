@@ -5,8 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     
-    <string name="notification_content_text">Leaf is meeting people.</string>
+    <string name="notification_content_text">Please shake hands with as many people as you can..</string>
     <string name="notification_ticket_text">Leaf has been started.</string>
-    <string name="notification_content_title"></string>
+    <string name="notification_content_title">Leaf is meeting people</string>
 
 </resources>
