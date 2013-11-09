@@ -45,6 +45,12 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
   }
 }
 
+void update_ui_from_accel(void) {
+  AccelData data;
+  accel_service_peek(&data);
+  // Insert UI code here
+}
+
 static void handle_accel(AccelData *accel_data, uint32_t num_samples) {
   // do nothing
 }
@@ -93,6 +99,7 @@ static void init(void) {
   });
 
   accel_data_service_subscribe(0, handle_accel);
+  accel_service_set_sampling_rate(ACCEL_SAMPLING_10HZ);
 
   const int inbound_size = 64;
   const int outbound_size = 16;
