@@ -45,6 +45,10 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
   }
 }
 
+static void handle_accel(AccelData *accel_data, uint32_t num_samples) {
+  // do nothing
+}
+
 static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
 
@@ -79,7 +83,7 @@ static void window_unload(Window *window) {
   bitmap_layer_destroy(icon_layer);
 }
 
-static void init() {
+static void init(void) {
   window = window_create();
   window_set_background_color(window, GColorBlack);
   window_set_fullscreen(window, true);
@@ -87,6 +91,8 @@ static void init() {
     .load = window_load,
     .unload = window_unload
   });
+
+  accel_data_service_subscribe(0, handle_accel);
 
   const int inbound_size = 64;
   const int outbound_size = 16;
@@ -97,6 +103,8 @@ static void init() {
 }
 
 static void deinit() {
+  accel_data_service_unsubscribe();
+
   window_destroy(window);
 }
 
