@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 	private Thread messageThread = null;
 
 	private static final UUID TODO_LIST_UUID = UUID
-			.fromString("1f3599a5-cf96-4c09-bbea-aa113e8cc18f");
+			.fromString("39b9d7d5-87b1-4950-a41e-1219fc1bfdf4");
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
 		final Handler handler = new Handler();
 		dataReceiver = new DataReceiver(TODO_LIST_UUID, new Handler());
 		
-        PebbleKit.registerReceivedDataHandler(this, dataReceiver);
+        PebbleKit.registerReceivedDataHandler(getApplicationContext(), dataReceiver);
 
         ackReceiver = new PebbleKit.PebbleAckReceiver(TODO_LIST_UUID) {
             @Override

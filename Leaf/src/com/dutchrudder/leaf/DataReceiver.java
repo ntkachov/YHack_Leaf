@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.PebbleKit.PebbleDataReceiver;
@@ -42,8 +43,9 @@ public class DataReceiver extends PebbleDataReceiver {
                  return;
              }
 			 
-			 //Real logic goes here.
-		}
+			 
+			 Log.d("Leaf", data.getUnsignedInteger(4) + "");
+		} 
 	}
 
 }
