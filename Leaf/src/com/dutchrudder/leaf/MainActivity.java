@@ -25,6 +25,8 @@ public class MainActivity extends Activity {
 	
 	public static final String FTUE = "ftue";
 
+	public static final String USERNAME = "username";
+
 	private List<ContactListItem> contactItems;
 	private ExpandableListView expListView;
 
@@ -53,7 +55,7 @@ public class MainActivity extends Activity {
 			// setting list adapter
 			expListView.setAdapter(listAdapter);
 		} else {
-			Intent signin = new Intent(this, SignUp.class);
+			launchSignup();
 		}
 	}
 
@@ -73,8 +75,17 @@ public class MainActivity extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		
+		if(item.getItemId() == R.id.action_settings){
+			sharedPrefs.edit().remove(FTUE).commit();
+			launchSignup();
+			
+		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	private void launchSignup(){
+		Intent signin = new Intent(this, SignUp.class);
+		startActivity(signin);
 	}
 	
 	

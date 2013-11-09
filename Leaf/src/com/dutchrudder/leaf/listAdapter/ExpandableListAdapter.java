@@ -95,7 +95,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 		
 		if(getChildrenCount(groupPosition) > 0){
-			if(isExpanded){
+			if(!isExpanded){
 				expandable.setImageResource(android.R.drawable.presence_online);
 			} else {
 				expandable.setImageResource(android.R.drawable.presence_busy);

@@ -23,7 +23,7 @@
         android:id="@+id/expandIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/contact_shortname"
         android:layout_alignParentRight="true"
         android:src="@android:drawable/presence_offline" />
 

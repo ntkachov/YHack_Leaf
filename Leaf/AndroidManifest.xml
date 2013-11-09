@@ -24,6 +24,7 @@
         </activity>
         <receiver android:name="PebbleReceiver"></receiver>
         <service android:name=".service.LeafService"></service>
+        <activity android:name="SignUp"></activity>
     </application>
 
 </manifest>

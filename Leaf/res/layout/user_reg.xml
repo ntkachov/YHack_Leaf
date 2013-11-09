@@ -2,40 +2,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <EditText
-        android:id="@+id/firstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="First name" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/lastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:text="Last Name" />
-
-    <EditText
-        android:id="@+id/facebookName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:text="Facebook username" />
-
     <Button
         android:id="@+id/signup"
         android:layout_width="wrap_content"
@@ -44,13 +10,53 @@
         android:layout_centerVertical="true"
         android:text="Go!" />
 
-    <TextView
-        android:id="@+id/textView1"
+    <EditText
+        android:id="@+id/facebookName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
+        android:layout_above="@+id/signup"
+        android:layout_alignLeft="@+id/firstName"
+        android:ems="10"
+        android:hint="Facebook Username" />
+
+    <EditText
+        android:id="@+id/lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/facebookName"
+        android:layout_alignLeft="@+id/facebookName"
+        android:ems="10"
+        android:hint="Full Name" />
+
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lastName"
         android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        android:text="Please enter a first name" />
+        android:ems="10"
+        android:hint="Display Name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/firstName"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Username" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup"
+        android:layout_centerHorizontal="true"
+        android:text="Please enter a first name"
+        android:visibility="gone" />
 
 </RelativeLayout>
