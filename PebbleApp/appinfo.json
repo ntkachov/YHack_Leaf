@@ -1,0 +1,17 @@
+{
+  "uuid": "39b9d7d5-87b1-4950-a41e-1219fc1bfdf4",
+  "shortName": "Leaf",
+  "longName": "Leaf",
+  "companyName": "Dutch Rudder",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}

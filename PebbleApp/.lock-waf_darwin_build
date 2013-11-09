@@ -1,0 +1,8 @@
+argv = ['/Users/Nick/pebble-dev/PebbleSDK-2.0-BETA1/Pebble/waf', 'configure', 'build']
+environ = {'TERM_SESSION_ID': 'B4E974D1-27C5-4057-AB57-A113B615C5D5', 'SSH_AUTH_SOCK': '/tmp/launch-ZHX0NM/Listeners', 'VERSIONER_PYTHON_PREFER_32_BIT': 'no', 'TERM_PROGRAM_VERSION': '326', 'SHELL': '/bin/bash', 'LOGNAME': 'Nick', 'USER': 'Nick', 'HOME': '/Users/Nick', 'PATH': '/Users/Nick/pebble-dev/PebbleSDK-2.0-BETA1/arm-cs-tools/bin:/Users/Nick/pebble-dev/PebbleSDK-2.0-BETA1/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin', 'DISPLAY': '/tmp/launch-4DxzS8/org.macosforge.xquartz:0', 'TMPDIR': '/var/folders/3y/57vmk3w155x0wsx_tv92fmh00000gn/T/', 'TERM_PROGRAM': 'Apple_Terminal', 'LANG': 'en_US.UTF-8', 'TERM': 'xterm-256color', 'Apple_PubSub_Socket_Render': '/tmp/launch-DJLQdK/Render', 'VERSIONER_PYTHON_VERSION': '2.7', 'SHLVL': '2', 'SECURITYSESSIONID': '186a4', 'CLICOLOR': '1', '__CF_USER_TEXT_ENCODING': '0x1F5:0:0', 'PWD': '/Users/Nick/macos_workspace/Leaf/PebbleApp', '_': '/Users/Nick/pebble-dev/PebbleSDK-2.0-BETA1/Pebble/waf', '__CHECKFIX1436934': '1', 'LSCOLORS': 'ExFxCxDxBxegedabagacad'}
+files = ['/Users/Nick/macos_workspace/Leaf/PebbleApp/wscript']
+hash = 4672844372416070989
+options = {'files': '', 'jobs': 4, 'verbose': 0, 'nocache': False, 'progress_bar': 0, 'timestamp': None, 'distcheck_args': None, 'top': '', 'destdir': '', 'keep': 0, 'zones': '', 'debug': False, 'prefix': '/usr/local/', 'download': False, 'force': False, 'targets': '', 'out': ''}
+out_dir = '/Users/Nick/macos_workspace/Leaf/PebbleApp/build'
+run_dir = '/Users/Nick/macos_workspace/Leaf/PebbleApp'
+top_dir = '/Users/Nick/macos_workspace/Leaf/PebbleApp'

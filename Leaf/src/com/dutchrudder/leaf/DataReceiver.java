@@ -14,7 +14,7 @@ public class DataReceiver extends PebbleDataReceiver {
 
 	private Handler handler;
 
-	protected DataReceiver(UUID subscribedUuid, Handler handler) {
+	public DataReceiver(UUID subscribedUuid, Handler handler) {
 		super(subscribedUuid);
 		this.handler = handler;
 	}

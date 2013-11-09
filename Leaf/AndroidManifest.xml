@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <receiver android:name="PebbleReceiver"></receiver>
+        <service android:name=".service.LeafService"></service>
     </application>
 
 </manifest>

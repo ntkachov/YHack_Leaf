@@ -8,5 +8,8 @@ int menu main 0x7f070000
 int string action_settings 0x7f040001
 int string app_name 0x7f040000
 int string hello_world 0x7f040002
+int string notification_content_text 0x7f040003
+int string notification_content_title 0x7f040005
+int string notification_ticket_text 0x7f040004
 int style AppBaseTheme 0x7f060000
 int style AppTheme 0x7f060001
