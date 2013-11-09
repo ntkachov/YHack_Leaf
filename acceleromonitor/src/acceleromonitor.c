@@ -4,6 +4,8 @@
 
 #define HISTORY_MAX 144
 #define MAX_ACCEL 4000
+#define LOG_PRINT_ACCEL 25
+#define TARGET_PEAKS = 4; 
 
 static Window *window;
 static TextLayer *text_layer;
@@ -19,9 +21,21 @@ bool running = false;
 
 static int last_x = 0;
 static AccelData history[HISTORY_MAX];
+//static char buf[LOG_PRINT_ACCEL];
+//static uint16_t peaks[TAGET_PEAKS];
+//static int peak_counter = 0;
+/*
+static void reset_peaks(){
+    for(int i = 0; i < TARGET_PEAKS; i++){
+        peaks[i] = 0;
+    }
+   peak_counter = 0;
+}*/
 
 static void set_timer() {
-  if (running) timer = app_timer_register(timer_frequency, timer_callback, NULL);
+  if (running){
+       timer = app_timer_register(timer_frequency, timer_callback, NULL);
+    }
 }
 
 static void draw_pts(GContext *ctx, int x, int y_start, int y_height, int16_t accel0, int16_t accel1) {
@@ -62,9 +76,10 @@ static void timer_callback() {
   history[last_x].x = accel.x;
   history[last_x].y = accel.y;
   history[last_x].z = accel.z;
+
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "%i, %i, %i", accel.x, accel.y, accel.z); 
   last_x++;
   if (last_x >= HISTORY_MAX) last_x = 0;
-
   layer_mark_dirty(graph_layer);
 
   set_timer();
@@ -158,6 +173,16 @@ static void init(void) {
     AccelData pt = {0, 0, 0};
     history[i] = pt;
   }
+
+    DictionaryIterator *iter;
+
+      if (app_message_outbox_begin(&iter) != APP_MSG_OK) {
+          return;
+    }
+      if (dict_write_uint8(iter, 4, 5) != DICT_OK) {
+                      return;
+    }
+      app_message_outbox_send();
 
   set_timer();
 }

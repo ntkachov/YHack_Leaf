@@ -1,0 +1,18 @@
+# project  configured on Sat Nov  9 04:04:05 2013 by
+# waf 1.7.11 (abi 98, python 20705f0 on darwin)
+# using /Users/Nick/pebble-dev/PebbleSDK-2.0-BETA1/Pebble/waf configure build
+#
+----------------------------------------
+Setting top to
+/Users/Nick/macos_workspace/Leaf/todo_list
+----------------------------------------
+Setting out to
+/Users/Nick/macos_workspace/Leaf/todo_list/build
+----------------------------------------
+Checking for program gcc,cc
+arm-none-eabi-gcc
+find program=['gcc', 'cc'] paths='' var='CC' -> 'arm-none-eabi-gcc'
+----------------------------------------
+Checking for program ar
+arm-none-eabi-ar
+find program=['ar'] paths='' var='AR' -> 'arm-none-eabi-ar'
