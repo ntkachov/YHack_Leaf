@@ -1,18 +1,14 @@
 package com.dutchrudder.leaf;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.UUID;
 
-import org.json.JSONObject;
-
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.dutchrudder.leaf.listAdapter.ContactListItem;
+import com.dutchrudder.leaf.listAdapter.ExpandableListAdapter;
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.PebbleKit.PebbleDataReceiver;
 import com.getpebble.android.kit.util.PebbleDictionary;
@@ -21,9 +17,11 @@ public class DataReceiver extends PebbleDataReceiver {
 
 	private Handler handler;
 	private Context context;
+	private final UUID id;
 
 	public DataReceiver(UUID subscribedUuid, Handler handler) {
 		super(subscribedUuid);
+		id = subscribedUuid;
 		this.handler = handler;
 	}
 
@@ -34,44 +32,68 @@ public class DataReceiver extends PebbleDataReceiver {
 	}
 
 	private class DataRunner implements Runnable {
-		
+
 		private int transactionId;
 		private Context context;
 		private PebbleDictionary data;
-		
-		public DataRunner(Context context, int transactionID,  final PebbleDictionary data){
+
+		public DataRunner(Context context, int transactionID, final PebbleDictionary data) {
 			this.data = data;
 			this.context = context;
 			this.transactionId = transactionID;
-			
+
 		}
+
 		@Override
 		public void run() {
 			PebbleKit.sendAckToPebble(context, transactionId);
-			 if (!data.iterator().hasNext()) {
-                 return;
-             }
-			 if(data.getUnsignedInteger(4) == 5){
-				 new Thread(new Runnable() {
-						public void run() {
-							if (ServerManager.sendFirst()) {
-								/*try {
-								//	Thread.sleep(5000);
-							//	} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}*/	
-								String userInfo = ServerManager.sendSecond();
-								System.out.println(userInfo);
-							}
-						}
-					}).start();
-			 }
-		} 
+			if (!data.iterator().hasNext()) {
+				return;
+			}
+			if (data.getUnsignedInteger(4) == 5) {
+				
+				ServerTask servTask = new ServerTask();
+				servTask.execute();
+					
+				
+			}
+		}
 	}
 	
+	public class ServerTask extends AsyncTask<Void, Void, Void>{
+		
+		String uname = null;
 
-
-
+		@Override
+		protected Void doInBackground(Void... params) {
+			if (ServerManager.sendFirst()) {
+					String[] userInfo = ServerManager.sendSecond();
+					if (userInfo != null) {
+						Log.d("Leaf", userInfo[0]);
+						boolean good = true;
+						for(int i = 0; i < ExpandableListAdapter.contactList.size(); i++){
+							if(ExpandableListAdapter.contactList.get(i).name.equals(userInfo[0])){
+								good = false;
+							}
+						}
+						if(good){
+							ExpandableListAdapter.contactList.add(new ContactListItem(userInfo[0],
+									null, null, null));
+							uname = userInfo[0];
+						
+						}
+					}
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			MainActivity.refresh(uname);	
+	
+		}
+		
+	}
 
 }

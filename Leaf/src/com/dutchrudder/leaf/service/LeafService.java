@@ -28,7 +28,7 @@ public class LeafService extends Service {
 	private int id = PEBBLE_UUID.hashCode();
 	private Notification notification;
 
-	private static final UUID PEBBLE_UUID = UUID
+	public static final UUID PEBBLE_UUID = UUID
 			.fromString("39b9d7d5-87b1-4950-a41e-1219fc1bfdf4");
 
 	@Override

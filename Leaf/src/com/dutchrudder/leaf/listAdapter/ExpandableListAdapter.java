@@ -17,7 +17,7 @@ import com.dutchrudder.leaf.R;
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	
 	private Context context;
-	private List<ContactListItem> contactList;
+	public static List<ContactListItem> contactList;
 	
 	public ExpandableListAdapter(Context context, List<ContactListItem> contactListItems){
 		contactList = contactListItems;
@@ -54,11 +54,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		if(contactList.get(groupPosition).fullName == null){
-			return 0;
-		} else {
-			return 1;
-		}
+		return 0;
 	}
 
 	@Override
@@ -94,13 +90,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			image.setBackground(new BitmapDrawable(contactList.get(groupPosition).image));
 		}
 		
-		if(getChildrenCount(groupPosition) > 0){
-			if(!isExpanded){
-				expandable.setImageResource(android.R.drawable.presence_online);
-			} else {
-				expandable.setImageResource(android.R.drawable.presence_busy);
-			}
-		}
+			expandable.setVisibility(View.GONE);
         return convertView;
 	}
 
