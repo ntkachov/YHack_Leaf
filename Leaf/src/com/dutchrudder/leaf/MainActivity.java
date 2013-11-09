@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,30 +22,39 @@ import com.dutchrudder.leaf.listAdapter.ExpandableListAdapter;
 import com.dutchrudder.leaf.service.LeafService;
 
 public class MainActivity extends Activity {
+	
+	public static final String FTUE = "ftue";
 
 	private List<ContactListItem> contactItems;
 	private ExpandableListView expListView;
 
+	public static SharedPreferences sharedPrefs;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		Intent startService = new Intent(this, LeafService.class);
-		startService(startService);
+		sharedPrefs = this.getSharedPreferences("leaf", MODE_WORLD_READABLE);
+		if(sharedPrefs.contains(FTUE)){
+			setContentView(R.layout.activity_main);
+			Intent startService = new Intent(this, LeafService.class);
+			startService(startService);
 		
-		ExpandableListAdapter listAdapter;
-	    ExpandableListView expListView;
+			ExpandableListAdapter listAdapter;
+			ExpandableListView expListView;
 		
-		 // get the listview
-        expListView = (ExpandableListView) findViewById(R.id.contactListView);
+			// get the listview
+			expListView = (ExpandableListView) findViewById(R.id.contactListView);
  
-        // preparing list data
-        prepareListData();
+			// preparing list data
+			prepareListData();
  
-        listAdapter = new ExpandableListAdapter(this, contactItems);
+			listAdapter = new ExpandableListAdapter(this, contactItems);
  
-        // setting list adapter
-        expListView.setAdapter(listAdapter);
+			// setting list adapter
+			expListView.setAdapter(listAdapter);
+		} else {
+			Intent signin = new Intent(this, SignUp.class);
+		}
 	}
 
 	private void prepareListData() {
@@ -63,91 +73,9 @@ public class MainActivity extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		new Thread(new Runnable() {
-			public void run() {
-				if (sendFirst()) {
-					/*try {
-					//	Thread.sleep(5000);
-				//	} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/	
-					String userInfo = sendSecond();
-					System.out.println(userInfo);
-				}
-			}
-		}).start();
+		
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public boolean sendFirst() {
-
-		try {
-			URL u = new URL(
-					String.format("http://54.215.16.181/send-time?&timeStamp=0&userId=mchiang&userInfo=Marco_Chiang"));
-
-			HttpURLConnection urlConnection = (HttpURLConnection) u
-					.openConnection();
-			try {
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(urlConnection.getInputStream(),
-								"UTF-8"));
-				String json = "";
-				String line = "";
-				while ((line = reader.readLine()) != null) {
-					json += line;
-				}
-
-				JSONObject jsonObject = new JSONObject(json);
-				System.out.println(jsonObject);
-				if (jsonObject.get("message").equals("success")) {
-					return true;
-				}
-
-			} finally {
-				urlConnection.disconnect();
-			}
-
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-
-		return false;
-	}
-
-	public String sendSecond() {
-
-		try {
-			URL u = new URL(
-					String.format("http://54.215.16.181/match?&timeStamp=0&userId=test"));
-
-			HttpURLConnection urlConnection = (HttpURLConnection) u
-					.openConnection();
-			try {
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(urlConnection.getInputStream(),
-								"UTF-8"));
-				String json = "";
-				String line = "";
-				while ((line = reader.readLine()) != null) {
-					json += line;
-				}
-
-				JSONObject jsonObject = new JSONObject(json);
-				if (jsonObject.get("message").equals("success")) {
-					return jsonObject.getString("userInfo");
-				}
-
-			} finally {
-				urlConnection.disconnect();
-			}
-
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-
-		return null;
-	}
-
-
+	
 }
