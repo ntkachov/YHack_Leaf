@@ -54,7 +54,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		return 0;
+		if(contactList.get(groupPosition).fullName == null){
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 
 	@Override
@@ -90,7 +94,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			image.setBackground(new BitmapDrawable(contactList.get(groupPosition).image));
 		}
 		
-			expandable.setVisibility(View.GONE);
+		if(getChildrenCount(groupPosition) > 0){
+			if(!isExpanded){
+				expandable.setImageResource(android.R.drawable.presence_online);
+			} else {
+				expandable.setImageResource(android.R.drawable.presence_busy);
+			}
+		}
         return convertView;
 	}
 

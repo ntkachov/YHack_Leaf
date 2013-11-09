@@ -76,13 +76,15 @@ public class ServerManager {
 				if (jsonObject.get("message").equals("success")) {
 					canSendAgain = true;
 					String info = "", name="";
+					String[] strings = {"","",""};
 					if(jsonObject.has("userInfo")){
 						info = jsonObject.getString("userInfo");
+						strings = info.split(",");
 					}
 					if(jsonObject.has("username")){
 						name = jsonObject.getString("username");
 					}
-					String[] r = {name, info};
+					String[] r = {name, strings[0], strings[1], strings[2]};
 					result = r;
 				}
 

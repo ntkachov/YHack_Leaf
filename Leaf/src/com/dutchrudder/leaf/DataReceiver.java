@@ -71,16 +71,15 @@ public class DataReceiver extends PebbleDataReceiver {
 					if (userInfo != null) {
 						Log.d("Leaf", userInfo[0]);
 						boolean good = true;
-						for(int i = 0; i < ExpandableListAdapter.contactList.size(); i++){
-							if(ExpandableListAdapter.contactList.get(i).name.equals(userInfo[0])){
+						for(ContactListItem item : ExpandableListAdapter.contactList ){
+							if(item.name.equals(userInfo[0])){
 								good = false;
 							}
 						}
 						if(good){
-							ExpandableListAdapter.contactList.add(new ContactListItem(userInfo[0],
-									null, null, null));
+							ExpandableListAdapter.contactList.add(new ContactListItem(userInfo[1],
+									null, userInfo[2], userInfo[3]));
 							uname = userInfo[0];
-						
 						}
 					}
 			}
